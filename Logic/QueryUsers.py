@@ -40,7 +40,8 @@ class QueryUsers:
         users = list()
         for day in range(24, 28):
             coll = self.db['tweetsGNIP'+str(day)]
-            users = users + coll.distinct("actor.id")
+            users = users + coll.distinct("actor.id").split(":")[2]
+
         print(len(list(set(users))))
 
     def _colombianq(self, location):
@@ -66,5 +67,5 @@ class QueryUsers:
                 bad_places.append(col)
 
         bad_places = list(set(bad_places))
-        print (bad_places)
+        print(bad_places)
         print(len(bad_places))
